@@ -1,10 +1,12 @@
 package com.festivities_register_test.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import org.junit.Before;
@@ -59,6 +61,18 @@ public class FestivityServiceTest {
 		Mockito.when(mockFestivityRepository.saveAndFlush(festivity)).thenReturn(festivity);
 		Festivity creada = festivityService.create(festivity);
 		assertEquals(creada.getName(),"Chinese New Year");
+	}
+	
+	@Test
+	public void test2GetAllFestivities(){
+		Festivity  festivity = new Festivity("Chinese New Year", getStartDate(), getEndDate(), "China");
+		List<Festivity> list = new ArrayList<Festivity>();
+		list.add(festivity);
+
+		Mockito.when(mockFestivityRepository.findAll()).thenReturn(list);
+		List<Festivity> respList = festivityService.findAll();
+		assertEquals(respList.size(), 1);
+		assertEquals(respList.get(0).getName(), "Chinese New Year");
 	}
 
 }

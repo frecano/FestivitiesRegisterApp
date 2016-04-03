@@ -1,19 +1,24 @@
 package com.festivities_register_test.controller;
 
+import static com.jayway.restassured.RestAssured.given;
+import static com.jayway.restassured.RestAssured.when;
+import static org.hamcrest.Matchers.equalTo;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 import org.springframework.http.HttpStatus;
 
 import com.festivities_register.domain.Festivity;
 import com.jayway.restassured.http.ContentType;
 
-import static com.jayway.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.equalTo;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FestivityControllerIT {
 
 	private final String FESTIVITY_ENDPOINT = "/festivities/";
@@ -41,5 +46,12 @@ public class FestivityControllerIT {
 		given().contentType(ContentType.JSON).body(festivity)
 		.when().post(FESTIVITY_ENDPOINT).then()
 		.assertThat().statusCode(equalTo(HttpStatus.OK.value()));
+	}
+	
+	@Test
+	public void test2GetAllFestivities(){
+		when().get(FESTIVITY_ENDPOINT).then()
+			.body("[0].name", equalTo("Saint Patrick's Day"))
+			.body("[0].place", equalTo("Italy"));
 	}
 }

@@ -1,5 +1,7 @@
 package com.festivities_register.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,10 @@ public class FestivityService {
 	public Festivity create(Festivity festivity) {
 		Festivity festivityCreated = festivityRespository.saveAndFlush(festivity);
 		return festivityCreated;
+	}
+	
+	public List<Festivity> findAll() {
+		return festivityRespository.findAll();
 	}
 }
 	
