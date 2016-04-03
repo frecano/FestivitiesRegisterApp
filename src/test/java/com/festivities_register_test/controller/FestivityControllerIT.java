@@ -54,4 +54,12 @@ public class FestivityControllerIT {
 			.body("[0].name", equalTo("Saint Patrick's Day"))
 			.body("[0].place", equalTo("Italy"));
 	}
+	
+	@Test
+	public void test3UpdateFestivity(){
+		Festivity festivity = new Festivity("Saint Patrick's Day", getStartDate(), getEndDate(), "European Union");
+		given().contentType(ContentType.JSON).body(festivity)
+			.when().post(FESTIVITY_ENDPOINT+"1").then()
+			.body("place", equalTo("European Union"));
+	}
 }

@@ -3,6 +3,7 @@ package com.festivities_register.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,4 +28,8 @@ public class FestivityController {
 		return festivityService.findAll();
 	}
 	
+	@RequestMapping(path = "/festivities/{id}", method = RequestMethod.POST)
+	public Festivity updateFestivity(@PathVariable("id") long id, @RequestBody Festivity festivity){
+		return festivityService.update(id, festivity);
+	}
 }

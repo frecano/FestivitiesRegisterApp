@@ -74,5 +74,18 @@ public class FestivityServiceTest {
 		assertEquals(respList.size(), 1);
 		assertEquals(respList.get(0).getName(), "Chinese New Year");
 	}
+	
+	@Test
+	public void test3UpdateFestivity(){
+		Festivity  preUdateFestivity = new Festivity("Asian New Year", getStartDate(), getEndDate(),"China1");
+		Festivity  postUpdateFestivity = new Festivity("Chinese New Year", getStartDate(), getEndDate(),"China2");
+		long id = 1l;
+		Mockito.when(mockFestivityRepository.exists(id)).thenReturn(true);
+		Mockito.when(mockFestivityRepository.getOne(id)).thenReturn(preUdateFestivity);
+		preUdateFestivity.setName("Chinese New Year");
+		Mockito.when(mockFestivityRepository.saveAndFlush(preUdateFestivity)).thenReturn(preUdateFestivity);
+		Festivity festivityUpdated = festivityService.update(id, postUpdateFestivity);
+		assertEquals(festivityUpdated.getName(), "Chinese New Year");
+	}
 
 }
