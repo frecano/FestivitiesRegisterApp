@@ -76,4 +76,8 @@ public class Festivity {
 	public String getPlace() {
 		return place;
 	}
+	
+	public boolean isValid(){
+		return name != null && startDate != null && place != null;
+	}
 }

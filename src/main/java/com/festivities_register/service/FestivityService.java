@@ -41,7 +41,7 @@ public class FestivityService {
 			Festivity preUpdatedFestivity = mapFields(readFestivity, festivity);
 			return festivityRespository.saveAndFlush(preUpdatedFestivity);
 		}
-		return null; //TODO Handle exceptions
+		return null;
 	}
 
 	private Festivity mapFields(Festivity oldOne, Festivity newOne) {
