@@ -33,4 +33,7 @@ Running the test in console
 
 Running project from source code
 > mvn spring-boot:run
+
+Running the applications from JAR
+> java -jar FestivitiesRegisterApp-0.0.1-SNAPSHOT.jar 
  
