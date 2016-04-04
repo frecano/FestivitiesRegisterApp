@@ -18,6 +18,7 @@ json:
 Updating:
 POST 
 > http://localhost:8080/festivities/{id}
+
 json:
 {
     "name":"Some Change",
