@@ -5,6 +5,8 @@ Request examples
 Creation:
 POST 
 > http://localhost:8080/festivities/
+
+
 json:
 {
     "name":"Festivity Name",
