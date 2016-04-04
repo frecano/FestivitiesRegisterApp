@@ -76,4 +76,5 @@ public class Festivity {
 	public String getPlace() {
 		return place;
 	}
+	
 }

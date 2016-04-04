@@ -39,6 +39,12 @@ public class FestivityControllerIT {
 		endDate.setTime(date);
 		return endDate;
 	}
+	
+	@Test
+	public void test0get404StatusCodeWhenNoResultsQueryingAllFestivities(){
+		when().get("/festivities/").then()
+		.assertThat().statusCode(equalTo(HttpStatus.NOT_FOUND.value()));
+	}
 
 	@Test
 	public void test1CreateFestivity(){
@@ -85,11 +91,36 @@ public class FestivityControllerIT {
 	}
 	
 	@Test
-	public void test7QueryFestivityByPlace(){
+	public void test7QueryFestivityByDateRange(){
 		when().get("/festivities?startDate1=15 Mar 2016 UTC&startDate2=18 Mar 2016 UTC").then()
 		.body("[0].name", equalTo("Saint Patrick's Day"))
 		.body("[0].place", equalTo("European Union"));
 	}
+	
+	
+	@Test
+	public void test8get404StatusCodeWhenNoResultsQueryingOneFestivity(){
+		when().get("/festivities?name=Hanukkah").then()
+		.assertThat().statusCode(equalTo(HttpStatus.NOT_FOUND.value()));
+	}
+	
+	@Test
+	public void test9get404StatusCodeWhenNoFestivityIsFoundForUpdating(){
+		Festivity festivity = new Festivity("Saint Patrick's Day", getStartDate(), getEndDate(), "European Union");
+		given().contentType(ContentType.JSON).body(festivity)
+			.when().post(FESTIVITY_ENDPOINT+"466").then()
+			.assertThat().statusCode(equalTo(HttpStatus.NOT_FOUND.value()));
+	}
+	
+	@Test
+	public void test10get405StatusCodeTryingToCreateFestivityWithoutEnoughData(){
+		Festivity festivity = new Festivity(null, getStartDate(), getEndDate(), "Italy");
+		given().contentType(ContentType.JSON).body(festivity)
+		.when().post(FESTIVITY_ENDPOINT).then()
+		.assertThat().statusCode(equalTo(HttpStatus.BAD_REQUEST.value()));
+	}
+	
+	
 	
 	
 }

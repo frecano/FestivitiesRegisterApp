@@ -12,7 +12,7 @@ import javax.validation.Payload;
 @Target({ElementType.TYPE, ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DateRangeValidation {
-	String message() default "{endDate} should be later than {startDate0}";
+	String message() default "endDate should be later than startDate";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
     String from();
