@@ -39,8 +39,8 @@ public class FestivityServiceTest {
 	}  
 
 	private final Calendar getStartDate(){
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-		Date date = sdf.parse("Tue, 08 Feb 2016 00:00:00 UTC", new java.text.ParsePosition(0));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy zzz");
+		Date date = sdf.parse("08 Feb 2016 UTC", new java.text.ParsePosition(0));
 		Calendar startDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		startDate.setTime(date);
 		System.out.println("DATE "+startDate.getTime());
@@ -48,8 +48,8 @@ public class FestivityServiceTest {
 	}
 
 	private Calendar getEndDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
-		Date date = sdf.parse("Wed, 23 Feb 2016 23:59:59 UTC", new java.text.ParsePosition(0));
+		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM yyyy zzz");
+		Date date = sdf.parse("23 Feb 2016 UTC", new java.text.ParsePosition(0));
 		Calendar endDate = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
 		endDate.setTime(date);
 		return endDate;
