@@ -3,7 +3,8 @@
 Request examples
 
 Creation:
-url: POST http://localhost:8080/festivities/
+POST 
+> http://localhost:8080/festivities/
 json:
 {
     "name":"Festivity Name",
@@ -13,7 +14,8 @@ json:
 }
 
 Updating:
-url: POST http://localhost:8080/festivities/{id}
+POST 
+> http://localhost:8080/festivities/{id}
 json:
 {
     "name":"Some Change",
@@ -23,10 +25,13 @@ json:
 }
 
 Fetch All Festivities:
-Url: GET http://localhost:8080/festivities/
+GET 
+> http://localhost:8080/festivities/
 
 Query Festivity by name, place or range of start date (Can be sent only the start date)
-http://localhost:8080/festivities?name=aaa&place=Italy&startDate1=16 Mar 2016 UTC&startDate2=20 Mar 2016 UTC
+
+GET:
+> http://localhost:8080/festivities?name=aaa&place=Italy&startDate1=16 Mar 2016 UTC&startDate2=20 Mar 2016 UTC
 
 Running the test in console
 > mvn clean verify
